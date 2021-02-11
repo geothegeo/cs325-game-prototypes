@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hello! Amaze!</title>
+<style>
+body
+{
+    background-color: aliceblue;
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Block Snake</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+It's a classic Snake game with a randomly spawning obstacle, and you can move past the borders.
+</li>
+
+<li><strong>Technical Merit:</strong>
+The visual and audio elements are on point. The random spawning "blocks" are pretty interesting.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+I learned a lot of the basics in dealing with Phaser 3. There was a lot to learn and consider when giving each
+element in the game a class and properties. I also gained insight into adding images, music, movement, randomness,
+and object collision. The hardest part by far was probably figuring out how the objects should interact with each other.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+    <ul>
+        <li>Snake body: <a href="https://www.cleanpng.com/png-black-square-computer-icons-clip-art-1687034/download-png.html">Black Square PNG</a></li>
+        <li>Food: <a href="https://pngimg.com/image/12405">Apple PNG</a></li>
+        <li>Obstacle: <a href="http://clipart-library.com/clipart/73919.htm">Brick Cliparts #37174</a></li>
+        <li>Background Music: <a href="https://www.fesliyanstudios.com/royalty-free-music/downloads-c/happy-music/2">"Happy Dreams" MP3</a></li>
+        <li>Biting Sound Effect: <a href="https://www.zapsplat.com/?s=eat&post_type=music&sound-effect-category-id=">"Bite into apple 1" MP3</a></li>
+        <li>Dying Sound Effect: <a href="https://www.zapsplat.com/page/3/?s=death&post_type=music&sound-effect-category-id">
+            "Retro 8-bit arcade style game sound, negative, death, die or lose life 3" MP3</a></li>       
+    </ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+This game is close to the classic Nokia Snake game. The codebase I used is from <a href="https://phaser.io/phaser3/devlog/85">here</a>.
+</li>
+
+<li><strong>High Concept:</strong>
+Collect apples and grow in size until there are no more apples to collect.
+</li>
+
+<li><strong>Theme/Challenge:</strong>
+The challenge I tackled: "Things must only be added as the game progresses, not removed".
+</li>
+
+<li><strong>Mandated Variety:</strong>
+State which input, randomness, genre, and play style you used in this prototype.
+    <ul>
+        <li>Input: keyboard</li>
+        <li>Randomness: some randomness</li>
+        <li>Genre: Family, Puzzle</li>
+        <li>Play Style: Collector</li>   
+    </ul>
+</li>
+
+<li><strong>Prototype Goal:</strong>
+I think the game mechanic this game is going for is "Movement".
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want the player to have fun and be on their toes as the game gets increasingly harder.
+</li>
+
+<li><strong>Gameplay:</strong>
+The player can only use arrow keys to move: left (left arrow), right (right arrow), 
+up (up arrow), and down (down arrow). The player will need to try to eat as many apples as possible
+while avoiding the random bricks. The catch is the more apples the player eats, the faster the snake
+will move, so the person must be very quick-witted when moving around on the board.
+</li>
+
+<li><strong>Strategies:</strong>
+There is no real strategy to this game, but the player does need to have good dexterity and reaction times.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+There is really not any story or setting that made the game what it is. Maybe the snake got hungry
+and he needed to eat apples, but in reality, life is not easy and his body is cursed to grow very fast 
+as he ate.
+</li>
+
+<li><strong>Target Audience:</strong>
+Anyone who wants to play a short arcade game.
+</li>
+
+<li><strong>Play Time:</strong>
+It would probably take about 10 min to finish the game if you are lucky.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
