@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rotational Mania</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Rotational Mania</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+To be honest, I vaguely remember seeing this game somewhere on the Internet. It was probably a game that trended
+for a whilte, and this is a take on it. I am very proud to have gotten this game working.
+</li>
+
+<li><strong>Technical Merit:</strong>
+The rotation mechanic was mathematically challenging.
+The camera movement with the white circles took a while.
+The whole calculation of boundaries and stuff took a lot of time.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+I learned more about using the mouse pointer and *being able to set the isDown is VERY IMPORTANT.
+The camera stuff was pretty easy once I found examples. It was cool to know how to set the text relative to the camera.
+The hardest part was making the game progress on and detecting game over.
+The easiest part was doing basic math and text stuff.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+All assests were taken from <a href="https://github.com/jojoee/phaser-examples/tree/master/games/circle-path/assets">here</a>.
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+I borrowed from the source code from <a href="https://www.emanueleferonato.com/2016/02/11/html5-prototype-of-ios-game-circle-path-made-with-phaser/">here</a>.
+All of the code was in Phaser 2, so translating them over to Phaser 3 and adding/editing/removing features was a good experience.
+</li>
+
+<li><strong>High Concept:</strong>
+Land the rotating colored circle inside the white circles as many times as possible.
+</li>
+
+<li><strong>Theme:</strong>
+The challenge I tackled: "Round and Round. Rotation is one of the primary mechanics in the game.".
+</li>
+
+<li><strong>Mandated Variety:</strong>
+    <ul>
+        <li>Input: Mouse</li>
+        <li>Randomness: randomness</li>
+        <li>Genre: Adventure?</li>
+        <li>Play Style: Achiever</li>   
+    </ul>
+</li>
+
+<li><strong>Prototype Goal:</strong>
+I think the game mechanic this game is going for is "Reaction Speed".
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want the player to have fun and feel challenged as the game gets increasingly harder.
+</li>
+
+<li><strong>Gameplay:</strong>
+The player has to land the rotating colored circle into the white targets as many times as possible 
+consecutively. The player will have to click in order to stop the rotating colored circle. If the 
+colored circle is not fully inside the white targets, then they lose. As they player lands more circles,
+the rotation speed will increase and make the game harder.
+</li>
+
+<li><strong>Strategies:</strong>
+There is no real strategy to this game, but the player does need to need to have good eyes and reaction speed.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+Johny and Timmy are in their own spheres connected by an axis. They can only drive one at a time, thus forcing them
+to spin around each other in turns. Only the white circles are safe spots. If they so much as drive out of the border,
+they will suffer from the beams of lava rising out of the ground below. Help them escape by landing on each white 
+platform (circle).
+</li>
+
+<li><strong>Target Audience:</strong>
+Anyone who wants to play a short, attention-intensive reflexive game.
+</li>
+
+<li><strong>Play Time:</strong>
+It would probably take about 3 min to get to a point where it is inhumanly possible to land the colored circle
+within the white circle. The code determines the increasing rotational speed.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>

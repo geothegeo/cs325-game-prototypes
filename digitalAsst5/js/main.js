@@ -14,7 +14,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 var ballDistance = 120;
-var rotationSpeed = 2;
+var rotationSpeed = 2.5;
 var angleRange = [25, 155];
 var visibleTargets = 7;
 
@@ -129,7 +129,7 @@ function update() {
             for (var i = 0; i < targetArray.length; i++) {
                 targetArray[i].alpha += 1 / 7;
             }
-            rotationSpeed += .1;
+            saveRotationSpeed += .25;
             addCircle(this);
         } else {
             gameOver(this);
