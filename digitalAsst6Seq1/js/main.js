@@ -1,125 +1,147 @@
 import "./phaser.js";
 
-class playGame extends Phaser.Scene {
-    constructor() {
-        super("PlayGame");
-    }
-    preload() {
-        this.load.atlas('cards', 'assets/atlas/cards.png', 'assets/atlas/cards.json');
-    }
-    create() {
-        this.frames = this.textures.get('cards').getFrameNames();
-        let x = config.width/2;
-        let y = config.height/2;
-        this.deck = [];
-        for (var i = 0; i < 64; i++)
-        {
-            this.add.image(x, y, 'cards', Phaser.Math.RND.pick(frames)).setInteractive();
-        }
-        this.tfArr = [];
-        // createTFArr();
-
-        this.timeIntrvl = 5000;
-        this.totalTime = this.timeIntrvl*52
-        this.deckTimer = this.time.addEvent({ delay: this.totalTime, callback: this.killGame, callbackScope: this});
-        this.gameOver = false;
-
-        this.score = 0;
-        this.currentInd = 0;
-        this.cardIntrvl = 12;
- 
-        this.text = this.add.text(0, config.height - (config.height-64), "Current Hits: 0", {
-            font: "48px Arial",
-            fill: "#ffffff"
-        });
-
-        // this.input.on("pointerup", this.checkMatch, this);
-    }
-    update() {
-        // if(score == -3) {
-        //     this.text.setText("Game Over! You Mishit Too Many!");
-        //     return;
-        // }
-        if(this.gameOver) {
-            this.text.setText("Game Finished! Total Hits: " + score);
-            return;
-        }
-        // if(this.deckTimer.getRemainingSeconds() % this.timeIntrvl == 0) {
-        //     this.moveCard(gameObject);
-        //     this.currentInd += 1;
-        //     score += 1;
-        // }
-        // this.text.setText("Current Hits: " + score);
-    }
-
-    // createTFArr() {
-    //     for(i = 0; i < 52; i++) {
-    //         this.tfArr.add(false);
-    //     }
-    //     for(i = this.cardIntrvl-1; i < 52; i++) {
-    //         let checkInd = this.cardIntrvl + 1;
-    //         if(this.deck[i]%13 == this.deck[i-checkInd]%13)
-    //             this.tfArr[i] = true;
-    //     }
-    // }
- 
-    // checkMatch(e) {
-    //     if(this.tfArr[this.currentInd] == true) {
-    //         score += 1;
-    //     } else {
-    //         score -= 1;
-    //     }
-    // }
- 
-    // moveCard(gameObject) {
-    //     // tween the card outside of the stage to the right
-    //     this.tweens.add({
-    //         targets: this.cardsInGame[cardToMove],
-    //         x: game.config.width + 2 * gameOptions.cardWidth * gameOptions.cardScale,
-    //         duration: 500,
-    //         ease: "Cubic.easeOut"
-    //     }); 
-
-        // this.tweens.add({
-        //     targets: this.cardsInGame[cardToMove],
-        //     y: game.config.height / 2,
-        //     duration: 500,
-        //     ease: "Cubic.easeOut",
-        //     callbackScope: this,
-        //     onComplete: function(){
- 
-        //         // ... then recycle the card which we moved outside the screen
-        //         cardToMove = this.nextCardIndex % 2;
-        //         this.cardsInGame[cardToMove].setFrame(this.deck[this.nextCardIndex]);
-        //         this.nextCardIndex = (this.nextCardIndex + 1) % 52;
-        //         this.cardsInGame[cardToMove].x = gameOptions.cardWidth * gameOptions.cardScale / -2;
- 
-        //         // now we can swipe again
-        //         this.isMatch = true;
-        //     }
-        // });
-    // }
-
-    killGame() {
-        this.gameOver = true;
-    }
-}
-
 var config = {
     type: Phaser.AUTO,
     backgroundColor: 0x4488aa,
-    scale: {
-        mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH,
-        parent: "thegame",
-        width: 576,
-        height: 800
-    },
-    scene: playGame
+    mode: Phaser.Scale.FIT,
+    // autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 800,
+    height: 600,
+    scene: {
+        preload: preload,
+        create: create,
+        update: update
+    }
 };
-
-var game;
  
-game = new Phaser.Game(config);
+var game = new Phaser.Game(config);
+
+var frames;
+var deck = [];
+var cardOrder = []; // Track card name string order
+var cardClicked = []; // Make sure score/hit can only be set off once
+var tfArr = []; // Based on cardOrder, track T/F based on card Interval
+
+var timeIntrvl = 2000;
+var totalTime = timeIntrvl*52 + 2000;
+var deckTimer;
+
+var score = 0;
+var totalHits = 0;
+var currentInd = 0;
+var cardIntrvl = 3;
+var gameOver = false;
+var text;
+
+function preload() {
+    this.load.atlas('cards', 'assets/atlas/cards.png', 'assets/atlas/cards.json');
+}
+
+function create() {
+    frames = this.textures.get('cards').getFrameNames();
+    // remove card back
+    frames.shift();
+    // remove joker
+    frames.splice(frames.indexOf("joker"),1);
+    
+    createArrs(this);
+    // console.log(frames);
+    // console.log(deck);
+    console.log(cardOrder);
+    console.log(tfArr);
+
+    currentInd = deck.length - 1;
+
+    deckTimer = this.time.addEvent({ delay: totalTime, callback: killGame, callbackScope: this});
+
+    text = this.add.text(5, 5, "Current Hits: 0", {
+        font: "40px Arial",
+        fill: "#ffffff"
+    });
+
+    // this.input.on("pointerup", this.checkMatch, this);
+}
+
+function update() {
+    var pointer = this.input.activePointer;
+
+    if(score == -3) {
+        text.setText("Game Over! You Mishit Too Many!");
+        return;
+    }
+    if(gameOver || deck.length == 0) {
+        text.setText("Game Finished! Total Hits: " + score + "/" + totalHits);
+        return;
+    }
+    if((deckTimer.getRemainingSeconds() % (timeIntrvl/1000)) < 0.02) {
+        moveCard(this);
+        currentInd -= 1;
+    }
+
+    if(pointer.isDown && !cardClicked[currentInd]) {
+        pointer.isDown = false;
+        cardClicked[currentInd] = true;
+        checkMatch();    
+    }
+    text.setText("Display Time between each card: 2 sec" + "\nCard Interval: 3" + "\nPossible Number of Hits: " + totalHits + "\nCurrent Hits: " + score);
+
+    // text.setText("Hit: " + tfArr[currentInd] + "\nMod: " + (deckTimer.getRemainingSeconds() % (timeIntrvl/1000)) + "\nTime: " + deckTimer.getRemainingSeconds().toFixed(1) + "\nCurrent Hits: " + score);
+    // text.setText("\nTime: " + deckTimer.getRemainingSeconds().toFixed(1));
+    // text.setText("\nCurrent Hits: " + score);
+}
+
+function createArrs(context) {
+    let x = config.width/2;
+    let y = config.height/2;
+    let checkInd = cardIntrvl + 1;
+    for (var i = 0; i < frames.length; i++)
+    {
+        let cardName = Phaser.Math.RND.pick(frames);
+        let card = context.add.image(x, y, 'cards', cardName).setInteractive();
+        deck.push(card);
+        cardName = cardName.replace("clubs", "");
+        cardName = cardName.replace("diamonds", "");
+        cardName = cardName.replace("hearts", "");
+        cardName = cardName.replace("spades", "");
+        cardOrder.push(cardName);
+        cardClicked.push(false);
+    }
+
+    for(var j = 0; j < cardOrder.length; j++) {
+        if (j < cardOrder.length - cardIntrvl) {
+            if(cardOrder[j] === cardOrder[j+checkInd]) {
+                tfArr.push(true);
+                totalHits += 1;
+            } else
+                tfArr.push(false);
+        } else {
+            tfArr.push(false);
+        }
+    }
+}
+
+function checkMatch() {
+    if(tfArr[currentInd] == true) {
+        score += 1;
+    } else {
+        score -= 1;
+    }
+}
+
+function moveCard(context) {
+    context.tweens.add({
+        targets: deck[currentInd],
+        y: { value: config.height*1.5, duration: 750, ease: 'Power0' }
+    });
+
+    deck.pop();
+}
+
+function killGame() {
+    gameOver = true;
+}
+
+
+
 
  
