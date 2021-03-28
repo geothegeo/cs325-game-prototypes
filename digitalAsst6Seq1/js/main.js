@@ -23,10 +23,11 @@ var cardClicked = []; // Make sure score/hit can only be set off once
 var tfArr = []; // Based on cardOrder, track T/F based on card Interval
 
 var timeIntrvl = 2000;
-var totalTime = timeIntrvl*52 + 2000;
+var totalTime = timeIntrvl*52 + 1999;
 var deckTimer;
 
 var score = 0;
+var misses = 0;
 var totalHits = 0;
 var currentInd = 0;
 var cardIntrvl = 3;
@@ -47,8 +48,8 @@ function create() {
     createArrs(this);
     // console.log(frames);
     // console.log(deck);
-    console.log(cardOrder);
-    console.log(tfArr);
+    // console.log(cardOrder);
+    // console.log(tfArr);
 
     currentInd = deck.length - 1;
 
@@ -65,7 +66,11 @@ function create() {
 function update() {
     var pointer = this.input.activePointer;
 
-    if(score == -3) {
+    if(totalHits == 0) {
+        text.setText("Please refresh to reshuffle the deck!");
+        return;
+    }
+    if(misses == 3) {
         text.setText("Game Over! You Mishit Too Many!");
         return;
     }
@@ -94,6 +99,12 @@ function createArrs(context) {
     let x = config.width/2;
     let y = config.height/2;
     let checkInd = cardIntrvl + 1;
+
+    deck = [];
+    cardOrder = [];
+    cardClicked = [];
+    tfArr = [];
+
     for (var i = 0; i < frames.length; i++)
     {
         let cardName = Phaser.Math.RND.pick(frames);
@@ -124,7 +135,7 @@ function checkMatch() {
     if(tfArr[currentInd] == true) {
         score += 1;
     } else {
-        score -= 1;
+        misses += 1;
     }
 }
 

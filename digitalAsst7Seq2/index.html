@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Slap Interval v2</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Slap Interval v2</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+My inspiration is drawn from Slap Jack, but honestly, I don't think I have ever seen a game where the player has to keep track
+of the order of the cards and slap in accordance to previously displayed cards. 
+</li>
+
+<li><strong>Technical Merit:</strong>
+Creating a form to take in user input.
+Using events on objects (GameObjects and Form) as opposed to pointer
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+Changing the form with desired HTML elements took a while. Styling took a lot longer. The JS code took the longest.
+I initially also had trouble showing the form. Had to use the Phaser 3 sandbox to get it working.
+There was incorrect game logic I had to fix (listed below). Switching from pointer.down to gameobjectdown
+in update() was a proud move to avoid "accidental" clicks away from the card.
+The hardest part was figuring out how to juggle between contexts (form and game).
+The easiest part was probably the formatting and setting up the card example form Phaser 3.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+All assests (cards.png and cards.json) were taken from <a href="https://github.com/photonstorm/phaser3-examples/tree/master/public/assets/atlas">here</a>.
+<br>Form template taken from <a href="https://github.com/photonstorm/phaser3-examples/blob/master/public/assets/text/loginform.html">here</a>.
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Improvements made: <br>
+<ol>
+    <li>*User inputs for card display interval and "card interval"</li>
+    <li>*The game will keep regenerating until at least 3 hits are possible</li>
+    <li>*Only clicks on cards will register now (changed from pointer.isdown -> this.input.on('gameobjectdown' ...)</li>
+    <li>*Improved game logic (also applied to v1): mishit and score now tracked seperately, reset arrays = [] in while loop</li>
+    <li>Improved game messages: Show number of cards left in deck, Congratulate user if they slapped all possible hits</li>
+    <li>aesthetic tweeks</li>
+</ol>
+</li>
+
+<li><strong>High Concept:</strong>
+Tap a card if you have seen it before, the seen-it-before-distance is defined by the "Card Interval".
+</li>
+
+<li><strong>Theme:</strong>
+N/A
+</li>
+
+<li><strong>Prototype Goal:</strong>
+The game mechanics this game is going for are "Memorization". Now the user can customize the setting to challenged themselves.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want the player to feel challenged as they need a decent amount of concentration.
+</li>
+
+<li><strong>Gameplay:</strong>
+The game shows a standard deck of 52 cards. After every Card-Display seconds, the top card will be removed to show the next card.
+The ony interaction the player has is clicking on the card (multiple clicks will only register once). There is a custom "card interval", n, 
+which indicated the number of cards that must be passed in order for the player to have an opportunity to score. 
+The scoring condition is that the card before the n cards and the card after must be the same. For example, if the first and fifth card are the same,
+then by tapping on the fifth card, the player will be able to score a point. While keeping track of the first card (for the unseen fifth card), 
+the second card might have a match with the unseen sixth card, so the player will also have to keep that in mind. The game will tell the player
+how many matches there are beforehand to make the game "easier" in a sense. The games when either the player mistaps 3 times or the deck runs though all the cards.
+In the latter case, the player will be told how many slaps they were able to tap out of the total possible hits.  
+</li>
+
+<li><strong>Strategies:</strong>
+There is no real strategy to this game, but the player does need to have good short term memory and a bit of reaction speed.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+In a game with the devil, the devil asks you to get all the possible hits otherwise you will suffer a terrible fate.
+</li>
+
+<li><strong>Target Audience:</strong>
+Anyone who wants to improve/test their memory. The game could also just be for fun.
+</li>
+
+<li><strong>Play Time:</strong>
+Assuming the player does not lose early on, it could take anywhere between 52 seconds (52 cards * 1 seconds) to 260 seconds (52 cards * 5 seconds). 
+The time is based on what the user has selected for the Display Interval.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
