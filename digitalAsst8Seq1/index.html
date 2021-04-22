@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Stay On the Path!</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Stay On the Path!</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+I dont think I've ever seen an online game like mine, though I was recently reminded of the fair ground game
+where the player has to keep the run a stick with a metal loop thought a path without having its sides touch it.
+</li>
+
+<li><strong>Technical Merit:</strong>
+Dynamically generating the curve from the right hand side of the screen.
+Calculating distance between cursor and the Spline. 
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+It was interesting to shift() and push() points in order to generate the path. It took a while to get it to a 
+satisfactory level. Some design decisions such as start-the-game-at-pointer-down were good implementations 
+on my part. The distance calculation was pretty painful as nothing was pixel perfect.
+The hardest part was figuring out how to generate the path and taking the distance from it to the cursor.
+The easiest part was probably not using timer and instead kept track of time through the update() function
+</li>
+
+<li><strong>Prototype Assets:</strong>
+I actually got some help from the Phaser Discord Server from @Golen and @photonstorm. They were kind enough to 
+explain to me how I should get started.
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Compared to the Physical Prototype, the game is completely computerized so that there is no need for a human
+moderator, although the game is not multipplayer anymore.
+</li>
+
+<li><strong>High Concept:</strong>
+Do not stray too far from the line.
+</li>
+
+<li><strong>Theme:</strong>
+N/A
+</li>
+
+<li><strong>Prototype Goal:</strong>
+The game mechanics this game is going for "Concentration". The player has to be steady and weary of the change in pathing.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want the player to feel challenged as they need a decent amount of concentration.
+</li>
+
+<li><strong>Gameplay:</strong>
+Though not checked yet, the player should place his cursor *anywhere on the line* and click on the game in order to 
+have the path start "moving". The player will have to hold down the left click and "drag" along the path in order to
+stay alive. If a distance greater than 50 units occurs, then the player dies. The player can be anywhere along the 
+visible path on the screen. 
+</li>
+
+<li><strong>Strategies:</strong>
+There is no real strategy to this game, but the player does need to have the pointer held down or else the game
+will not know the cursor position updated and the player might die as a result..
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+In a game with the devil, the devil asks you to stay on the path to run away (you never do because the path
+is infinite) or perish.
+</li>
+
+<li><strong>Target Audience:</strong>
+Anyone who wants to have a little fun and test their concetration.
+</li>
+
+<li><strong>Play Time:</strong>
+There is no time limit. The player plays until he/she leaves the path.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
