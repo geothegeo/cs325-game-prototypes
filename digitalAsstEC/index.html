@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Clean Your Room!</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Clean Your Room!</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+It is a collecting game that forces the user to use mouse-controlled movements under time pressure.
+</li>
+
+<li><strong>Technical Merit:</strong>
+The mouse-controlled character movement is pretty cool.
+The decreasing timer mechanic is thoughtful.
+The bears and bombs have random velocities.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+I learned about how to deal with registering the mouse pointer.
+I also learned about resizing PNGs to create moving objects and mess with the physics.
+Death by timer took a while to figure out, and I was satisfied with the result.
+The easiest part was twiggling around with the math. The hardest part was getting
+a satisfactory pointer-based movement system down and conceptualizing the game.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+    <ul>
+        <li>Backdrop: <a href="http://www.textures4photoshop.com/tex/brick-and-wall/room-background-for-photoshop-free.aspx">room PNG</a></li>
+        <li>Bear: <a href="https://freepngimg.com/objects/toy">toy PNG</a></li>
+        <li>Platforms: <i>given (resized)</i></li>
+        <li>Player: <i>given</i></li>
+        <li>Bombs: <i>given</i></li>
+    </ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+    This game is close to the "first Phaser 3 game". The codebase I used is from <a href="https://phaser.io/tutorials/making-your-first-phaser-3-game/part2">here</a>.
+</li>
+
+<li><strong>High Concept:</strong>
+Collect all toys in the room before time runs out.
+</li>
+
+<li><strong>Theme:</strong>
+The theme I tackled: "Cleaning".
+</li>
+
+<li><strong>Mandated Variety:</strong>
+    <ul>
+        <li>Input: Mouse</li>
+        <li>Randomness: some randomness</li>
+        <li>Genre: Family, Racing</li>
+        <li>Play Style: Collector</li>   
+    </ul>
+</li>
+
+<li><strong>Prototype Goal:</strong>
+I think the game mechanic this game is going for is "Mouse Skills".
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want the player to have fun and feel challenged as the game gets increasingly harder.
+</li>
+
+<li><strong>Gameplay:</strong>
+The player has to click and hold on the screen in order to make the character move continuously.
+If the cursor is aimed above the character, the character will jump if it is on the ground.
+If the cursor is level or below the character, the character will simply move in the direction
+of the pointer. When you touch the bears, you will collect them. Once all the bears are gone,
+the timer will be reset and shortened by 3 seconds (to a min of 20 sec), an additional bear will be added,
+and an additional bomb will be added. If the timer runs out or you touch a bomb, then the game ends.
+</li>
+
+<li><strong>Strategies:</strong>
+There is no real strategy to this game, but the player does need to get used to the character movement.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+Little Johny needs to clean up his room after playing all day or else his parents will punish him.
+Each day he plays with more toys (safe and dangerous ones), and he is trying to maintain a streak of 
+not getting caught.
+</li>
+
+<li><strong>Target Audience:</strong>
+Anyone who wants to play a short, time-intensive arcade game.
+</li>
+
+<li><strong>Play Time:</strong>
+It would probably take about 5 min to finish the game. At a certain point, there will be
+too many bears to collect and too many bombs flying around to prevent you from finishing
+in 20 seconds.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>

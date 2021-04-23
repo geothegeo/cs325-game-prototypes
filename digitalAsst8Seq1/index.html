@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Stay On the Path!</title>
+<title>Stay On the Path! v2</title>
 <style>
 body
 {
@@ -19,16 +19,16 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Stay On the Path!</h2>
+<h2>Stay On the Path! v2</h2>
 
 <ul>
 <li><strong>Originality:</strong>
 I dont think I've ever seen an online game like mine, though I was recently reminded of the fair ground game
-where the player has to keep the run a stick with a metal loop thought a path without having its sides touch it.
+where the player has to run a stick with a metal loop through a path without having its sides touch it.
 </li>
 
 <li><strong>Technical Merit:</strong>
-Dynamically generating the curve from the right hand side of the screen.
+Dynamically generating the curve from the right hand side of the screen (using splice and pointer calculation).
 Calculating distance between cursor and the Spline. 
 </li>
 
@@ -36,7 +36,7 @@ Calculating distance between cursor and the Spline.
 It was interesting to shift() and push() points in order to generate the path. It took a while to get it to a 
 satisfactory level. Some design decisions such as start-the-game-at-pointer-down were good implementations 
 on my part. The distance calculation was pretty painful as nothing was pixel perfect.
-The hardest part was figuring out how to generate the path and taking the distance from it to the cursor.
+The hardest part was calculating distance between cursor and the nearest point to the pline.
 The easiest part was probably not using timer and instead kept track of time through the update() function
 </li>
 
@@ -69,7 +69,7 @@ I want the player to feel challenged as they need a decent amount of concentrati
 <li><strong>Gameplay:</strong>
 Though not checked yet, the player should place his cursor *anywhere on the line* and click on the game in order to 
 have the path start "moving". The player will have to hover (no need to hold down left click) along the path in order to
-stay alive. If a distance greater than 50 units occurs, then the player dies. The player can be anywhere along the 
+stay alive. If a distance greater than 25 units occurs, then the player dies. The player can be anywhere along the 
 visible path on the screen. 
 </li>
 

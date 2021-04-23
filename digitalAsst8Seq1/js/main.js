@@ -88,7 +88,7 @@ function update ()
             'distance: ' + closest.distance,
             'gameOver: ' + gameOver
         ]);
-
+ 
         if(closest.distance >= 25) {
             gameOver = true;
             graphics.clear();
