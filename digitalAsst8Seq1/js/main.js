@@ -97,7 +97,7 @@ function update ()
             gameOver = false;
         }
 
-        if(ropeTimer / 1000 == 1) 
+        if(ropeTimer % 1000 == 0) 
             speed += .5;
     } else {
         cursor.set(points[0], points[1]);
