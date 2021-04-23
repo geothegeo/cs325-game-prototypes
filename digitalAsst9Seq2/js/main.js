@@ -20,8 +20,8 @@ var bgSndConfig;
 
 var colorIdx = 1;
 var localStorageName = "ropeScore";
-var speed = 1.5;
-var dist = 50;
+var speed = 1.6;
+var dist = 52;
 
 const cursor = new Phaser.Math.Vector2();
 
@@ -95,8 +95,8 @@ function update ()
             gameOver = false;
             cursor.set(pointer.x, pointer.y);
             bgSound.play(bgSndConfig);
-            speed = 1.5;
-            dist = 50;
+            speed = 1.6;
+            dist = 52;
             score = 0;
             rectX = 50;
         }
@@ -125,7 +125,7 @@ function update ()
         curve.draw(graphics, 64);
 
         if(rectX <= 600)
-            rectX += speed/100;
+            rectX += speed/50;
         rect = Phaser.Geom.Rectangle.FromXY(0, 75, rectX, 525);
         graphics.fillStyle(0x0000FF, 0.8).fillCircle(cursor.x, cursor.y, 10);
         graphics.fillStyle(0xffa700, 0.9).fillRectShape(rect);
@@ -138,8 +138,8 @@ function update ()
             'Distance from line: ' + closest.distance.toFixed(2),
         ]);
         txtBot.setText([
-            'Max Dist: ' + dist.toFixed(2),
-            'Speed:     x' + speed
+            'Max Dist:  ' + dist,
+            'Speed:     x' + speed.toFixed(1)
         ]);
  
         if(closest.distance >= dist || cursor.x <= rectX) {
@@ -162,10 +162,12 @@ function update ()
             txtBot.setText("");
         }
 
-        if(score / 1000 == 1){
-            speed += .25;
+        if(score % 750 == 0){
+            if(speed != 4)
+                speed += .4;
             if(dist != 20)
-                dist -= 2.5;
+                dist -= 4;
+            colorIdx += 1;
             this.cameras.main.setBackgroundColor(colors[colorIdx%3]);
         }
     }
