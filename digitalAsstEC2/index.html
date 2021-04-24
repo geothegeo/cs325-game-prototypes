@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Whack those Letters!</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Whack those Letters!</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+I must admit first I thought of Fruit Ninja then I thought of Whack-A-Mole as the basis for this game.
+However, this game is very original in that in order to whack the letters, the player needs to whack with not only the mouse 
+but also the "keyboard" in a sense. 
+</li>
+
+<li><strong>Technical Merit:</strong>
+The only real technique that took me a while to experiment was seeing how to process key.isDown and pointer.isDown at the same
+time when they are embedded under conditional statements. Everythings I have done i this game is the culmination of all that 
+I have learned during this Phaser journey and a lot of logic handling. 
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+It was interesting to create sublevels in the game and only have one line of code to set a fair time limit based on the 
+current level and sub level (not shown). I thought I was pretty smart to use 2D array to hold the coordinates to create
+the "moles", and the corresponding letter, which also happens to be used to bind the keys.
+The hardest part was just figuring an efficient system in handling the creation and deletion of the moles. At first I used
+a lot of switch statements to handle the multiple appearance of moles, but then I swapped to a 2D array and everything worked out.
+The easiest part was probably detecting the player's key and mouse input on the mole.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+I wrote this game completely from scratch. Pretty proud of myself.
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+The closest game to mine is any Whack-A-Mole game made with Phaser I guess.
+</li>
+
+<li><strong>High Concept:</strong>
+Destroy all letters that appear on the screen
+</li>
+
+<li><strong>Theme:</strong>
+N/A
+</li>
+
+<li><strong>Prototype Goal:</strong>
+The game mechanics this game is going for "Coordination" and "Reaction Timing". The player has to have good hand coordination 
+as 2 inputs are needed at once, and as time available decreases, the player will have to give the inputs faster.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+I want the player to feel challenged as they need a decent amount of concentration.
+</li>
+
+<li><strong>Gameplay:</strong>
+This "Whack-A-Mole" game has 5 levels and 6 sub-levels (technically the last level has infinite sub-levels). Each level
+represents the number of moles that will appear at the same time, and each sub-level decreases the amount of time the player
+has to whack all the letters. In order to whack the letters, the player will have to click into the circle in which the lettter(s)
+appear in and hold down the corresponding letter key and left mouse button (The letters will appear capitalized, but the player is
+only required to press the letter key). The letter with its circle will disappear once whacked, and the player will proceed to 
+the next level/sub-level once all the on screen letters are whacked. Each whacked letter is one point, and the player is trying
+to score as high as possible. The game ends when the player misses any letters available to be whacked 3 times (The player is not
+penalized for the wrong key press on the letters).
+</li>
+
+<li><strong>Strategies:</strong>
+There is no real strategy to this game. Just have fun and be vigilant.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+The player has to score high enough to be able to have dinner, or else his/her Asian parents will starve them.
+</li>
+
+<li><strong>Target Audience:</strong>
+Anyone who wants to have a little fun and test their keyboard familiarity and hand-eye coordination.
+</li>
+
+<li><strong>Play Time:</strong>
+The timer will stop decreasing at a certain point while 5 letters appear at the same time, so if a player is really good,
+he/she could probably last forever. Before that point, it could take the player only 1-5 min depending on how fast they are.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
