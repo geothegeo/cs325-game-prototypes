@@ -142,7 +142,7 @@ function update ()
             'Speed:     x' + speed.toFixed(1)
         ]);
  
-        if(closest.distance >= dist || cursor.x <= rectX) {
+        if(closest.distance >= dist || (cursor.x-10) <= rectX) {
             gameStart = false;
             gameOver = true;
             bgSound.stop();
