@@ -16,7 +16,7 @@ var misses = 0;
 var gameStart = false;
 var isGenerate = true;
 
-var startTime = 1750;
+var startTime = 1200;
 var gTime = startTime;
 var txtNum = 1;
 var subLvl = 1;
@@ -86,7 +86,7 @@ function update ()
             }
             
             if (gTime > 400 || txtNum != 5)
-                gTime = startTime - (275-(txtNum-1)*25) * (subLvl-1);
+                gTime = startTime - (200-(txtNum-1)*25) * (subLvl-1);
 
             genPoints();
             drawCircles();
